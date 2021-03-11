@@ -3,7 +3,10 @@ const path = require('path');
 const app = express();
 const port = 5000
 const mongoose = require('mongoose');
-require('dotenv/config')
+const bodyParser = require('body-parser')
+require('dotenv/config');
+
+app.use(bodyParser.json());
 
 //Import Routes
 const postsRoute = require('./routes/posts');
@@ -17,7 +20,9 @@ app.get('/', (req, res) => {
 
 
 //Connection to MongoDB
-mongoose.connect(process.env.DB_CONNECTION, { useUnifiedTopology: true }, () => console.log('CONNECTED to MongoDB'));
+const key = process.env.DB_CONNECTION;
+mongoose.connect(key, { useNewUrlParser: true, useUnifiedTopology: true }, () => console.log('CONNECTED to MongoDB'));
+
 
 //Listening
 app.listen(port, () => {
