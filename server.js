@@ -3,7 +3,7 @@ const path = require('path');
 const app = express();
 const port = 5000
 const mongoose = require('mongoose');
-const bodyParser = require('body-parser')
+const bodyParser = require('body-parser');
 require('dotenv/config');
 
 app.use(bodyParser.json());
@@ -15,7 +15,7 @@ app.use('/posts', postsRoute);
 //Route
 app.get('/', (req, res) => {
   res.send('This is the home page!!');
-})
+});
 
 
 
@@ -26,5 +26,5 @@ mongoose.connect(key, { useNewUrlParser: true, useUnifiedTopology: true }, () =>
 
 //Listening
 app.listen(port, () => {
-  console.log(`App listening at http://localhost:${port}`)
-})
+  console.log(`App listening at http://localhost:${port}`);
+});
