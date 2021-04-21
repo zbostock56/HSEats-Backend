@@ -1,7 +1,8 @@
 const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
 
 //Schema ~ how the data is going to look/be stored
-const PostSchema = mongoose.Schema({
+var PostSchema = Schema({
     title: {
         type: String,
         required: true
@@ -13,15 +14,15 @@ const PostSchema = mongoose.Schema({
     date: {
         type: Date,
         default: Date.now,
-        required: true
-    },
+
+    }
 });
 
 // User Schema
 // mongoose.Schema({
 //     username: String,
 //     password: String,
-
 // });
 
-module.export = mongoose.model('Posts', PostSchema);
+//module.export = mongoose.model('Posts', PostSchema);
+module.exports = {PostSchema: mongoose.model('posts', PostSchema)};
