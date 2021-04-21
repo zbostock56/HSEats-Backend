@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const Post = require('../models/Post');
+const Post = require('../models/Post').PostSchema;
 
 //General landing page for /posts
 router.get('/', (req, res) => {
@@ -12,7 +12,7 @@ router.get('/specific', (req, res) => {
     res.send('Even more specific');
 });
 
-router.post('/', (req,res) => {
+router.post('/', async (req,res) => {
     // console.log(req.body);
     const post = new Post({
         title: req.body.title,
@@ -20,13 +20,19 @@ router.post('/', (req,res) => {
     });
 
     //Saves to database (under comment)
-    post.save()
-    .then(data => {
-        res.json(data);
-    });
-//     .catch(err => {
-//         res.json({ message: err });
-//     });
+    // post.save()
+    // .exec()
+    // .then(data => {
+    //     res.json(data);
+    // })
+    // .catch(err => {
+    //     res.json({ message: err });
+    // })
+
+//Sends Post model
+    await post.save(err => {
+            res.status(200).send({message: post});
+    })
 });
 
 module.exports = router;
