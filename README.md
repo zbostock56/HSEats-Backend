@@ -1,2 +1,2 @@
 # HSEats-Backend
-A test on the backend for HSEats
+Backend for HSEats To-Go app for Hamilton Southeastern High School
